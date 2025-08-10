@@ -1,0 +1,16 @@
+{
+  "name": "api-encomendas",
+  "version": "1.4.0",
+  "private": true,
+  "description": "API de encomendas — herdada da equipa anterior",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "lodash": "4.17.11"
+  }
+}
