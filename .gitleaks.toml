@@ -1,0 +1,15 @@
+# Configuração do gitleaks para este repositório.
+# Mantém as regras públicas e acrescenta o padrão interno da organização.
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "segredo-interno-istec"
+description = "Segredo interno com prefixo da organização"
+regex = '''(istec_[a-z]+_[A-Za-z0-9_]{12,}|sk_test_ISTEC[A-Za-z0-9]{8,})'''
+tags = ["segredo", "workshop"]
+
+  # Este ficheiro descreve os padrões; não é um achado.
+  [rules.allowlist]
+  paths = ['''\.gitleaks\.toml$''']
