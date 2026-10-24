@@ -69,7 +69,7 @@ Aplica-se ao `POST /auth/login`, ao `src/routes/auth.js`, à validação das cre
 
 **Aprova exceções / Revisor:** Francisco Neto
 
-**Cumpre / Executa:** programador responsável pela autenticação.
+**Cumpre / Executa:** Guilherme Gomes
 
 ### Política de segurança — Segredo JWT escrito no código
 
@@ -102,7 +102,7 @@ Aplica-se ao `src/config.js`, ao `src/autenticacao.js`, às variáveis de ambien
 
 **Aprova exceções / Revisor:** Francisco Neto
 
-**Cumpre / Executa:** responsável pelo deployment e pela configuração.
+**Cumpre / Executa:** Guilherme Gomes
 
 ### Política de segurança — IDOR em encomendas
 
@@ -134,7 +134,7 @@ Aplica-se às rotas `GET /encomendas` e `GET /encomendas/:id`, ao `src/routes/en
 
 **Aprova exceções / Revisor:** Guilherme Gomes
 
-**Cumpre / Executa:** programador responsável pelas encomendas.
+**Cumpre / Executa:** Francisco Neto
 
 ### Política de segurança — Exposição de passwordHash e NIF
 
@@ -166,4 +166,4 @@ Aplica-se à rota `GET /utilizadores/me`, ao `src/routes/utilizadores.js`, às q
 
 **Aprova exceções / Revisor:** Guilherme Gomes
 
-**Cumpre / Executa:** programador responsável pelos utilizadores.
+**Cumpre / Executa:** Francisco Neto
