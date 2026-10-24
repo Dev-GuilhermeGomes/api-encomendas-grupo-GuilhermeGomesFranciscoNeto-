@@ -91,18 +91,18 @@ Os casos não são independentes. Com o segredo do JWT exposto (#2), um atacante
 
 **Critério:** impacto (acesso a dados/contas de terceiros) × probabilidade (explorável por qualquer pessoa, sem ferramentas especiais) × custo de correção baixo.
 
-| # | Ameaça | Onde na API |
-|---|--------|-------------|
-| 1 | Login sem verificar a palavra-passe: qualquer pessoa entra como qualquer utilizador só com o email (caso 1) | `POST /auth/login` — `src/routes/auth.js` |
-| 2 | Segredo JWT escrito no código: qualquer pessoa com acesso ao repositório forja tokens com qualquer `sub`/`perfil` (caso 2) | `src/config.js:8` / `src/autenticacao.js` (afeta todas as rotas protegidas) |
-| 3 | IDOR: um cliente lê encomendas de outros clientes pelo `id` (caso 6) | `GET /encomendas/:id` — `src/routes/encomendas.js` |
-| 4 | *(em aberto — ver nota abaixo)* | |
+| # | Ameaça | Onde na API | Política |
+|---|--------|-------------|----------|
+| 1 | Login sem verificar a palavra-passe: qualquer pessoa entra como qualquer utilizador só com o email (caso 1) | `POST /auth/login` — `src/routes/auth.js` | [`auth.md`](politicas/auth.md) |
+| 2 | Segredo JWT escrito no código: qualquer pessoa com acesso ao repositório forja tokens com qualquer `sub`/`perfil` (caso 2) | `src/config.js:8` / `src/autenticacao.js` (afeta todas as rotas protegidas) | [`config.md`](politicas/config.md) |
+| 3 | IDOR: um cliente lê encomendas de outros clientes pelo `id` (caso 6) | `GET /encomendas/:id` — `src/routes/encomendas.js` | [`idor-encomendas.md`](politicas/idor-encomendas.md) |
+| 4 | Exposição de `passwordHash` e NIF (caso 7) | `GET /utilizadores/me` — `src/routes/utilizadores.js` | [`exposicao-passwordhash-nif.md`](politicas/exposicao-passwordhash-nif.md) |
 
-**Nota sobre o 4º lugar — as duas análises discordam aqui, e vale a pena decidirem a pensar nisto:**
+**Nota sobre o 4º lugar:**
 - **Opção A — Injeção de SQL (caso 5).** É o padrão de vulnerabilidade mais "clássico" e mais fácil de justificar a um júri que procura OWASP Top 10. Contra: no mock deste workshop o impacto real é limitado, por isso a demonstração ao vivo ("Execução VERMELHA") fica menos impressionante do que parece no papel.
 - **Opção B — Exposição de `passwordHash`/`nif` (caso 7).** Explora-se com um único `curl` autenticado, sem payload nenhum, e expõe diretamente uma credencial e um dado pessoal identificável (NIF) com valor fora da própria API. É mais fácil de demonstrar ao vivo do que a SQLi.
 
-Recomendação: ficar com a **Opção B**, porque o critério definido acima pesa "explorável sem ferramentas especiais" e isso favorece claramente o caso 7 sobre o caso 5 — mas registem a SQLi logo a seguir no backlog, porque o padrão de código continua errado e vai morder-vos assim que ligarem uma base de dados real.
+Foi escolhida a **Opção B**. A SQLi fica registada no backlog, porque o padrão de código continua errado e será um risco maior quando existir uma base de dados real.
 
 **Justificação dos três consensuais:**
 - **#1** — zero esforço de exploração (não precisa de saber nenhuma palavra-passe) e dá controlo total da conta.
