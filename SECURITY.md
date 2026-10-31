@@ -1,6 +1,6 @@
 # Política de Segurança — api-encomendas
 
-**Grupo:** NN · **Versão:** 0.1 · **Data:** 2026-10-24
+**Grupo:** Gameplay RJ · **Versão:** 0.1 · **Data:** 2026-10-24
 
 ## Objetivo
 
